@@ -11,9 +11,7 @@ app.use(express.json());
 // Serve HTML, CSS, JS, images
 app.use(express.static(__dirname));
 
-const MONGO_URI =
-  "mongodb+srv://mayuresh:Pune1234@pune-mess-finder.m1urxh8.mongodb.net/pune_mess_finder?retryWrites=true&w=majority";
-
+const MONGO_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGO_URI)
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log(err));
