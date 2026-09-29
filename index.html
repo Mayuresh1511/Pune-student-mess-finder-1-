@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pune Student Mess Finder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav>
+
+    <div class="logo">
+        🍱 Pune Student Mess Finder
+    </div>
+
+    <button class="menu-toggle" onclick="toggleMenu()">
+        ☰
+    </button>
+
+    <div class="nav-menu" id="navMenu">
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="owner-login.html">Owner Login</a></li>
+            <li><a href="login.html">Admin Login</a></li>
+        </ul>
+
+        <div class="nav-controls">
+
+            <button id="themeBtn" onclick="toggleTheme()">
+                🌙 Dark Mode
+            </button>
+
+            <select id="language" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="mr">मराठी</option>
+                <option value="hi">हिन्दी</option>
+            </select>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+
+    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200"
+    class="hero-img" alt="Food">
+
+    <h1>Find the Best Mess Near Your College</h1>
+
+    <p>
+        Search affordable and hygienic messes across Pune.
+
+Discover the best Veg & Non-Veg messes, dining halls and student meal services.
+    </p>
+
+    <button class="btn" onclick="openMessList()">
+Explore Now
+</button>
+<br><br>
+
+<button class="btn" onclick="findLocation()">
+📍 Find Messes Near Me
+</button>
+
+<p id="locationResult"></p>
+</section>
+
+
+
+<!-- Featured Messes -->
+<section id="messes">
+
+    <h2>Featured Messes</h2>
+
+    <div class="college-container">
+
+        <div class="college-card">
+            <h3>Patil Mess</h3>
+            <p>₹3000 / Month</p>
+            <p>⭐ 4.5 Rating</p>
+        </div>
+
+        <div class="college-card">
+            <h3>Hotel Morya & Mess</h3>
+            <p>₹3200 / Month</p>
+            <p>⭐ 4.7 Rating</p>
+        </div>
+
+        <div class="college-card">
+            <h3>Vaishnavi Mess</h3>
+            <p>₹3500 / Month</p>
+            <p>⭐ 4.6 Rating</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- About Section -->
+<section id="about">
+<section id="favorites">
+
+    <h2>❤️ Favorite Messes</h2>
+
+    <div id="favoriteList">
+        No favorites added yet
+    </div>
+
+</section>
+<section id="about">
+
+    <h2>About Us</h2>
+
+    <div class="college-card">
+
+        <p>
+            Pune Student Mess Finder helps students find affordable,
+            hygienic and nearby mess facilities around colleges in Pune.
+        </p>
+
+        <br>
+
+        <p>
+            Students can view mess menus, pricing,
+            locations and WhatsApp contacts in one place.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+
+    <h2>Student Reviews</h2>
+
+    <div class="college-container">
+
+        <div class="college-card">
+            <h3>Rahul</h3>
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>
+                Found a great mess near PCCOE.
+                Very useful website.
+            </p>
+        </div>
+
+        <div class="college-card">
+            <h3>Priya</h3>
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>
+                Easy to find veg messes and
+                contact owners directly.
+            </p>
+        </div>
+
+        <div class="college-card">
+            <h3>Amit</h3>
+            <p>⭐⭐⭐⭐</p>
+            <p>
+                Weekly menu feature is very helpful.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+<section id="suggestion">
+
+    <h2>💡 Suggestions</h2>
+
+    <textarea
+    id="suggestionText"
+    rows="4"
+    placeholder="Give your suggestions">
+    </textarea>
+
+    <br><br>
+
+    <button onclick="saveSuggestion()">
+        Submit Suggestion
+    </button>
+    </section>
+    
+<section>
+
+<h2>📊 Website Statistics</h2>
+
+<div class="college-container">
+
+<div class="college-card">
+<h3 id="totalMesses">0</h3>
+<p>Total Messes</p>
+</div>
+
+<div class="college-card">
+<h3 id="vegMesses">0</h3>
+<p>Veg</p>
+</div>
+
+<div class="college-card">
+<h3 id="nonVegMesses">0</h3>
+<p>Non Veg</p>
+</div>
+
+</div>
+
+</section>
+<!-- Footer -->
+<footer>
+
+    <h3>🍱 Pune Student Mess Finder</h3>
+
+    <p>
+        Helping students find affordable and hygienic messes.
+    </p>
+
+    <br>
+
+    <p>📧 punemessfinder@gmail.com</p>
+    <p>📞 +91 9876543210</p>
+    <p>📍 Pune, Maharashtra</p>
+
+    <br>
+
+    <p>© 2026 Pune Student Mess Finder</p>
+
+
+</footer>
+
+<script>
+
+function toggleTheme(){
+
+    document.body.classList.toggle("light-mode");
+
+    let btn = document.getElementById("themeBtn");
+
+    if(document.body.classList.contains("light-mode")){
+        localStorage.setItem("theme","light");
+        btn.innerHTML="☀️ Light Mode";
+    }else{
+        localStorage.setItem("theme","dark");
+        btn.innerHTML="🌙 Dark Mode";
+    }
+}
+
+window.onload = function(){
+
+    let savedTheme = localStorage.getItem("theme");
+
+    if(savedTheme==="light"){
+
+        document.body.classList.add("light-mode");
+
+        let btn = document.getElementById("themeBtn");
+
+        if(btn){
+            btn.innerHTML="☀️ Light Mode";
+        }
+    }
+
+    loadStatistics();
+    loadFavorites();
+}
+function findLocation(){
+
+    if(navigator.geolocation){
+
+        navigator.geolocation.getCurrentPosition(function(position){
+
+            let lat = position.coords.latitude;
+            let lng = position.coords.longitude;
+
+            window.open(
+                `https://www.google.com/maps/search/mess+near+me/@${lat},${lng},15z`,
+                "_blank"
+            );
+
+        });
+
+    }else{
+
+        alert("Geolocation not supported");
+
+    }
+
+}
+function loadStatistics(){
+
+document.getElementById("totalMesses").innerText = 16;
+document.getElementById("vegMesses").innerText = 8;
+document.getElementById("nonVegMesses").innerText = 8;
+
+}
+function saveSuggestion(){
+
+    let suggestion =
+    document.getElementById(
+    "suggestionText"
+    ).value;
+
+    let suggestions =
+    JSON.parse(
+    localStorage.getItem(
+    "suggestions"
+    )) || [];
+
+    suggestions.push(suggestion);
+
+    localStorage.setItem(
+    "suggestions",
+    JSON.stringify(suggestions)
+    );
+
+    alert("Suggestion Submitted");
+
+    document.getElementById(
+    "suggestionText"
+    ).value="";
+}
+function changeLanguage(){
+
+let lang =
+document.getElementById("language").value;
+
+if(lang==="mr"){
+
+document.querySelector(".hero h1").innerText =
+"तुमच्या कॉलेजजवळील सर्वोत्तम मेस शोधा";
+
+document.querySelector(".hero p").innerText =
+"PCCOE, DY Patil आणि VIT Pune जवळील परवडणाऱ्या मेस शोधा";
+
+}
+
+else if(lang==="hi"){
+
+document.querySelector(".hero h1").innerText =
+"अपने कॉलेज के पास सबसे अच्छी मेस खोजें";
+
+document.querySelector(".hero p").innerText =
+"PCCOE, DY Patil और VIT Pune के पास सस्ती मेस खोजें";
+
+}
+
+else{
+
+document.querySelector(".hero h1").innerText =
+"Find the Best Mess Near Your College";
+
+document.querySelector(".hero p").innerText =
+"Search affordable and hygienic messes near PCCOE, DY Patil Akurdi and VIT Pune.";
+
+}
+
+}
+function toggleMenu(){
+
+    document
+    .getElementById("navMenu")
+    .classList.toggle("active");
+
+}
+function loadFavorites(){
+
+    let favorites =
+    JSON.parse(localStorage.getItem("favorites")) || [];
+
+    let favoriteList =
+    document.getElementById("favoriteList");
+
+    if(favorites.length === 0){
+
+        favoriteList.innerHTML =
+        "No favorites added yet";
+
+        return;
+    }
+
+    favoriteList.innerHTML = "";
+
+    favorites.forEach(name => {
+
+        let item =
+        document.createElement("div");
+
+        item.className = "college-card";
+
+        item.innerHTML = `
+    <h3>❤️ ${name}</h3>
+
+    <a href="messes.html" class="btn">
+        Explore Now
+    </a>
+
+    
+`;
+
+        favoriteList.appendChild(item);
+
+    });
+}
+function toggleMenu(){
+
+    document
+    .getElementById("navMenu")
+    .classList.toggle("active");
+
+}
+</script>
+<script>
+
+function openMessList(){
+    document.getElementById("messPopup").style.display="block";
+}
+
+function closeMessList(){
+    document.getElementById("messPopup").style.display="none";
+}
+
+function searchPopupMess(){
+
+    let input =
+    document.getElementById("popupSearch")
+    .value.toLowerCase();
+
+    let items =
+    document.querySelectorAll("#messList .mess-item")
+
+    items.forEach(item=>{
+
+        if(item.innerText.toLowerCase().includes(input)){
+            item.style.display="block";
+        }
+        else{
+            item.style.display="none";
+        }
+
+    });
+
+}
+
+function popupFilter(type){
+
+    let items =
+    document.querySelectorAll("#messList .mess-item")
+
+    items.forEach(item=>{
+
+        if(type==="all"){
+            item.style.display="block";
+        }
+        else if(item.classList.contains(type)){
+            item.style.display="block";
+        }
+        else{
+            item.style.display="none";
+        }
+
+    });
+
+}
+
+</script>
+<div id="messPopup" class="popup">
+
+<div class="popup-content">
+
+<span class="close" onclick="closeMessList()">&times;</span>
+
+<h2>🍱 Available Messes</h2>
+
+<div class="search-box">
+<input type="text"
+id="popupSearch"
+placeholder="Search Mess..."
+onkeyup="searchPopupMess()">
+</div>
+
+<div class="filter-buttons">
+<button onclick="popupFilter('all')">All</button>
+<button onclick="popupFilter('veg')">🟢 Veg</button>
+<button onclick="popupFilter('nonveg')">🔴 Non-Veg</button>
+</div>
+
+<div id="messList">
+
+<div class="mess-item veg"
+onclick="window.location.href='messes.html#patilMess'">
+▶ Patil Mess
+</div>
+
+<div class="mess-item veg"
+onclick="window.location.href='messes.html#moryaMess'">
+▶ Hotel Morya & Mess
+</div>
+
+<div class="mess-item nonveg"
+onclick="window.location.href='messes.html#vaishnaviMess'">
+▶ Vaishnavi Mess
+</div>
+
+<div class="mess-item nonveg"
+onclick="window.location.href='messes.html#dharmarajMess'">
+▶ Dharmaraj Hotel
+</div>
+
+<div class="mess-item veg"
+onclick="window.location.href='messes.html#vakratundaMess'">
+▶ Vakratunda
+</div>
+
+<div class="mess-item nonveg"
+onclick="window.location.href='messes.html#shivbhumiMess'">
+▶ Hotel Shivbhumi & Mess
+</div>
+
+<div class="mess-item nonveg"
+onclick="window.location.href='messes.html#payalMess'">
+▶ Payal Khanaval
+</div>
+
+<div class="mess-item nonveg"
+onclick="window.location.href='messes.html#nagdevMess'">
+▶ Nagdev Hotel
+</div>
+
+<div class="mess-item nonveg"
+onclick="window.location.href='messes.html#aaswadMess'">
+▶ Aaswad Hotel & Family Restaurant
+</div>
+
+<div class="mess-item nonveg"
+onclick="window.location.href='messes.html#aarambhMess'">
+▶ Hotel Aarambh
+</div>
+
+<div class="mess-item nonveg"
+onclick="window.location.href='messes.html#christyMess'">
+▶ Christy Restaurant
+</div>
+
+<div class="mess-item veg"
+onclick="window.location.href='messes.html#maitriMess'">
+▶ Maitri Katta
+</div>
+
+<div class="mess-item nonveg"
+onclick="window.location.href='messes.html#swagatMess'">
+▶ Swagat Gharghuti Mess
+</div>
+
+<div class="mess-item veg"
+onclick="window.location.href='messes.html#swamiMess'">
+▶ Shree Swami Samarth
+</div>
+
+<div class="mess-item veg"
+onclick="window.location.href='messes.html#sugamMess'">
+▶ Sugam Dining Hall
+</div>
+
+<div class="mess-item veg"
+onclick="window.location.href='messes.html#jaimalharMess'">
+▶ Jai Malhar Hotel & Mess
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
